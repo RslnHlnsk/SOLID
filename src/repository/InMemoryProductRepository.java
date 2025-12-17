@@ -10,11 +10,11 @@ public class InMemoryProductRepository implements ProductRepository {
 
     public InMemoryProductRepository() {
         // добавим тестовые товары
-        products.add(new Product(1, "PlayStation 5", "Sony", 499));
-        products.add(new Product(2, "Xbox Series X", "Microsoft", 499));
-        products.add(new Product(3, "Nintendo Switch", "Nintendo", 299));
+        products.add(new Product(1, "PlayStation", "Sony", 499));
+        products.add(new Product(2, "Xbox X", "Microsoft", 499));
+        products.add(new Product(3, "NintendoS", "Nintendo", 299));
         products.add(new Product(4, "MacBook Pro", "Apple", 1299));
-        products.add(new Product(5, "Dell XPS 13", "Dell", 999));
+        products.add(new Product(5, "Dell 27", "Dell", 999));
         products.add(new Product(6, "iPhone 17 Pro", "Apple", 2299));
     }
 

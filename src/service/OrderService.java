@@ -1,28 +1,35 @@
 package service;
 
-import java.util.ArrayList;
-import java.util.List;
-import model.Cart;
 import model.Order;
+import model.Product;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.List;
 
 public class OrderService {
-    private int nextOrderId = 1;
-    private final List<Order> orders = new ArrayList<>();
+    private final Map<Integer, Order> orders = new ConcurrentHashMap<>();
+    private int currentId = 1;
 
-    public Order createOrder(Cart cart) {
-        if (cart.getProducts().isEmpty()) {
-            throw new IllegalStateException("Корзина пуста");
-        }
-        Order order = new Order(nextOrderId++, cart.getProducts(), "В обработке");
-        orders.add(order);
+    public Order createOrder(List<Product> products) {
+        Order order = new Order(currentId++, products);
+        orders.put(order.getId(), order);
         return order;
     }
 
-    public List<Order> getAllOrders() {
-        return new ArrayList<>(orders);
+    public Order getOrderById(int orderId) {
+        return orders.get(orderId);
     }
 
-    public void updateOrderStatus(Order order, String newStatus) {
-        order.setStatus(newStatus);
+    public List<Order> getAllOrders() {
+        return List.copyOf(orders.values());
+    }
+
+    public int generateOrderId() {
+        return currentId++;
+    }
+
+    public void addOrder(Order order) {
+        orders.put(order.getId(), order);
     }
 }

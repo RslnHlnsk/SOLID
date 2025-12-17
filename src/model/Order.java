@@ -3,20 +3,31 @@ package model;
 import java.util.List;
 
 public class Order {
-    private final int orderId;
-    private final List<Product> products;
-    private String status; // "В обработке", "Доставляется", "Завершен"
+    private int orderId;
+    private List<Product> products;
+    private OrderStatus status;
 
-    public Order(int orderId, List<Product> products, String status) {
-        this.orderId = orderId;
+    public Order(int id, List<Product> products) {
+        this.orderId = id;
         this.products = products;
-        this.status = status;
+        this.status = OrderStatus.NEW;
     }
 
-    public int getOrderId() { return orderId; }
-    public List<Product> getProducts() { return products; }
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public int getId() {
+        return orderId;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
 
     @Override
     public String toString() {
