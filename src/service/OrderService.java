@@ -24,12 +24,4 @@ public class OrderService {
     public List<Order> getAllOrders() {
         return List.copyOf(orders.values());
     }
-
-    public int generateOrderId() {
-        return currentId++;
-    }
-
-    public void addOrder(Order order) {
-        orders.put(order.getId(), order);
-    }
 }
